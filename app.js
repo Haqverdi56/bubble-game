@@ -67,8 +67,8 @@ function startGame(timing) {
     mode = '    '
     clearInterval(interval);
     interval = setInterval(() => {
-        
-        if(spanLength > 5) {
+        fromLocalStorage();
+        if(spanLength > 50) {
             stopGame();
             gameArea.innerHTML = ""
             spanLength = 0;
