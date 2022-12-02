@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bubble Game</h1>
+        <input type="text" id="name-input" placeholder="Enter your name">
+        <button id="start">Start Game</button>
+    </div>
+    <div id="game-section">
+        <div>
+            <p>Player: <span id="userName"></span></p>
+            <p>Score: <span id="score">0</span></p>
+            <p>High score: <span id="high-score">0</span></p>
+        </div>
+        <div id="game-area">
+            
+        </div>
+        <div>
+            <div class="modes">
+                <button class="game-buttons" id="easy">Easy</button>
+                <button class="game-buttons" id="medium">Medium</button>
+                <button class="game-buttons" id="hard">Hard</button>
+            </div>
+            <button class="game-buttons" id="game-start">Start Game</button>
+            <button class="game-buttons" id="stop-game">Stop Game</button>
+        </div>
+        <audio id="sound">
+            <source src="assest/bubbles_single2-107640.mp3">
+        </audio>
+    </div>
+</body>
+<script src="app.js"></script>
+</html>
