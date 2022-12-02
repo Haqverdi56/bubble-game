@@ -21,6 +21,7 @@ gameSection.style.display = 'none';
 
 let interval;
 let timingInterval = 2000;
+let mode = 'easy'
 
 nameButton.addEventListener('click', function(){
     userName.innerText = name.value;
@@ -28,7 +29,12 @@ nameButton.addEventListener('click', function(){
     console.log(newName)
     container.style.display = "none"
     gameSection.style.display = 'block'
+    highScore.innerText = window.localStorage.getItem("highScore");
 });
+
+let spanLength = 1;
+let scoreValue = 0;
+let highScoreValue = 0;
 
 gameStartButton.addEventListener('click', function() {
     startGame(timingInterval);
@@ -40,23 +46,25 @@ stopButton.addEventListener('click', function() {
 
 easyButton.addEventListener('click', function() {
     startGame(timingInterval);
+    mode = 'easy'
 })
 mediumButton.addEventListener('click', function() {
-    startGame(1500)
+    startGame(1500);
+    scoreValue+2
+    mode = 'medium'
 })
 hardButton.addEventListener('click', function() {
     startGame(800);
+    scoreValue+3
+    mode = 'hard'
 })
 
 function stopGame() {
     clearInterval(interval);
 };
 
-let spanLength = 1;
-let scoreValue = 0;
-let highScoreValue = 0;
-
 function startGame(timing) {
+    mode = '    '
     clearInterval(interval);
     interval = setInterval(() => {
         
@@ -80,10 +88,17 @@ function startGame(timing) {
         span.style.top = randomLeftY+'px';
 
         span.addEventListener('click', function(e){
+            fromLocalStorage();
             e.target.remove();
             audio.play();
             spanLength--;
-            scoreValue++;
+            if(mode == 'easy') {
+                scoreValue++;
+            } else if(mode == 'medium') {
+                scoreValue += 2;
+            } else if(mode == 'hard') {
+                scoreValue += 3;
+            }
         });
         score.innerText = scoreValue;
         
@@ -91,3 +106,12 @@ function startGame(timing) {
         spanLength++
     }, timing);
 };
+
+
+const fromLocalStorage = () => {
+    if (+score.innerText > +highScore.innerText) {
+      window.localStorage.setItem("highScore", score.innerText);
+      highScore.innerText = score.innerText;
+    }
+};
+  
